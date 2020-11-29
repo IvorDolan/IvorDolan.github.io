@@ -2,6 +2,8 @@
 
 // variable for an active modal
 let activeGifNum;
+// True if ending first video, false if ending second video
+let isFirstVideo = true;
 
 // --- The quiz questions -------
 const quizQuestions = [
@@ -73,23 +75,37 @@ const quizQuestions = [
 // --- Go back to main screen --
 const goToFirstScreen = function(item) {
     console.log('returning to first screen', item);
-    $('.first-screen').show();
-    $('.video-container').hide();
+    // tiny fade in fade out (in ms)
+    $('.video-container').fadeOut(100);
+    $('.first-screen').fadeIn(100);
 }
 
+
+// This swaps out the quiz questions
 const addQuizQuestions = function(videoIdNum) {
     console.log("Adding questions for video #", videoIdNum);
-    $("#box1-label").text(quizQuestions[videoIdNum][0]);
-    $("#box2-label").text(quizQuestions[videoIdNum][1]);
-    $("#box3-label").text(quizQuestions[videoIdNum][2]);
+    $(".modal-title").text(quizQuestions[videoIdNum][0]);
+    $("#box1-label").text(quizQuestions[videoIdNum][1]);
+    $("#box2-label").text(quizQuestions[videoIdNum][2]);
+    $("#box3-label").text(quizQuestions[videoIdNum][3]);
 }
 
-// ---- Gif 3 & Video 3 ----------
+// ---- Start Gif click to video ----------
 const video = document.querySelector('#video');
 video.addEventListener('ended', (event) => {
-    // Add the quiz text
-    addQuizQuestions(activeGifNum);
-    $('#theQuiz').modal('show');
+
+    // Pause before show quiz or returning to main page
+    setTimeout(() => {
+            // if on first video, load the quiz
+            if (isFirstVideo) {
+                // Add the quiz text
+                addQuizQuestions(activeGifNum);
+                $('#theQuiz').modal('show');
+            } else {
+                goToFirstScreen();
+            }
+        },
+        300);
 });
 
 $(".gif-listener").on('click touchstart', e => {
@@ -100,15 +116,15 @@ $(".gif-listener").on('click touchstart', e => {
     $('.first-screen').hide();
     $('.video-container').show();
     // swap video source
-    // video/video-8-a.mov
-    // video/video-8-b.mov
-    // const videoPath = `video/video-${activeGifNum}-a.mov`;
-    // $('#video-source').attr("src", videoPath);
-    // video.load()
+    // Always loading the "a" video on GIF click
+    const videoPath = `video/video-${activeGifNum}-a.mp4`;
+    // Example: video/video-8-a.mov
+    $('#video-source').attr("src", videoPath);
+    video.load();
     video.play();
     return false;
 });
-// ------ end gif3 video3
+// ------ end gif click to video
 
 
 // --- handler for submit on the quiz modal popup
@@ -122,7 +138,12 @@ modalForm.addEventListener('submit', event => {
     console.log("box1", input.box1.checked, "box2", input.box2.checked, "box3",  input.box3.checked);
     $('#theQuiz').modal('hide');
 
-    // TODO change this to the rest of the video
-    // This defaults to going back to the first screen
-    goToFirstScreen();
+    // swap video source
+    // Always loading the "a" video on GIF click
+    const videoPath = `video/video-${activeGifNum}-b.mp4`;
+    // Example: video/video-8-a.mov
+    $('#video-source').attr("src", videoPath);
+    isFirstVideo = false;
+    video.load();
+    video.play();
 });
