@@ -98,10 +98,15 @@ video.addEventListener('ended', (event) => {
     setTimeout(() => {
             // if on first video, load the quiz
             if (isFirstVideo) {
+                // toggle off first screen boolean
+                isFirstVideo = !isFirstVideo;
                 // Add the quiz text
                 addQuizQuestions(activeGifNum);
                 $('#theQuiz').modal('show');
             } else {
+                // toggle back on first screen boolean
+                isFirstVideo = !isFirstVideo;
+                // got back to home page
                 goToFirstScreen();
             }
         },
@@ -143,7 +148,6 @@ modalForm.addEventListener('submit', event => {
     const videoPath = `video/video-${activeGifNum}-b.mp4`;
     // Example: video/video-8-a.mov
     $('#video-source').attr("src", videoPath);
-    isFirstVideo = false;
     video.load();
     video.play();
 });
