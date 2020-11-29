@@ -94,10 +94,17 @@ video.addEventListener('ended', (event) => {
 
 $(".gif-listener").on('click touchstart', e => {
     // parse the gif number
+    // example "gif-8" split on "-" is "gif" and "8";
     activeGifNum = e.currentTarget.id.split('-')[1];
     console.log("Clicked on gif listener #", activeGifNum);
     $('.first-screen').hide();
     $('.video-container').show();
+    // swap video source
+    // video/video-8-a.mov
+    // video/video-8-b.mov
+    // const videoPath = `video/video-${activeGifNum}-a.mov`;
+    // $('#video-source').attr("src", videoPath);
+    // video.load()
     video.play();
     return false;
 });
