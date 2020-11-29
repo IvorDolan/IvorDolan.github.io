@@ -8,73 +8,125 @@
     <link rel="stylesheet" href="css/bootstrap-grid.css" />
   </head>
   <body>
-    <div class="centered" id="first-screen" >
-      <div class="container-fluid align-content-center">
+    <!-- First screen is hidden when video plays -->
+    <div class="centered first-screen">
+      <div class="container-fluid align-content-center" >
         <div class="row">
           <!-- First Image -->
           <div class="col-4 p-0" id="grid-1">
-            <a href="page2.html">
+            <div class="gif-listener" id="gif-1">
               <img src="img/gif1.gif" alt="Irish Bus" />
-            </a>
+            </div>
           </div>
           <!-- Second Image -->
           <div class="col-4 p-0" id="grid-2">
-            <a href="page2.html">
+            <div class="gif-listener" id="gif-2">
               <img src="img/gif4.gif" alt="Irish Bus" />
-            </a>
+            </div>
           </div>
           <!-- Third Image -->
           <div class="col-4 p-0" id="grid-3">
-            <a href="page2.html">
+            <div class="gif-listener" id="gif-3">
               <img src="img/gif3.gif" alt="Irish Bus" />
-            </a>
-          </div>
+            </div>
         </div>
         <div class="row">
           <!-- Fourth Image -->
           <div class="col-4 p-0" id="grid-4">
-            <a href="page2.html">
+            <div class="gif-listener" id="gif-4">
               <img src="img/gif4.gif" alt="Irish Bus" />
-            </a>
+            </div>
           </div>
           <!-- Fifth Image -->
           <div class="col-4 p-0" id="grid-5">
-            <a href="page2.html">
+            <div class="gif-listener" id="gif-5">
               <img src="img/gif4.gif" alt="Irish Bus" />
-            </a>
+            </div>
           </div>
           <!-- Sixth Image -->
           <div class="col-4 p-0" id="grid-6">
-            <a href="page2.html">
+            <div class="gif-listener" id="gif-6">
               <img src="img/gif6.gif" alt="Irish Bus" />
-            </a>
+            </div>
           </div>
         </div>
         <!-- Third Row -->
         <div class="row">
           <!-- Seventh Image -->
           <div class="col-4 p-0" id="grid-7">
-            <a href="page2.html">
+            <div class="gif-listener" id="gif-7">
               <img src="img/gif4.gif" alt="Irish Bus" />
-            </a>
+            </div>
           </div>
           <div class="col-4 p-0" id="grid-8">
-            <a href="page2.html">
+            <div class="gif-listener" id="gif-8">
               <img src="img/img8.jpeg" alt="Irish Bus" />
-            </a>
+            </div>
           </div>
           <div class="col-4 p-0" id="grid-9">
-            <a href="page2.html">
+            <div class="gif-listener" id="gif-9">
               <img src="img/gif9.gif" alt="Irish Bus" />
-            </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    </div>
+
+    <!-- Video (change source on gif click) -->
+    <div class="video-container container-fluid align-content-center">
+      <div class="row">
+        <div class="col-12 p-0">
+          <video id="video" autoplay width="100%">
+            <source src="video/bigbuckbunny20sec.mp4"
+                    type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+          </video>
+        </div>
+      </div>
+    </div>
+   <!--- end Video -->
+
+
+    <!--  TEST Modal popup #3 -->
+    <div id="theQuiz" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="form3">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="box1">
+                <label class="form-check-label" for="box1" id="box1-label">Check me out 1</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="box2">
+                <label class="form-check-label" for="box2" id="box2-label">Check me out 2</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="box3">
+                <label class="form-check-label" for="box3" id="box3-label">Check me out 3</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END test modal popup -->
+
 
     <!-- Javascript lib imports -->
     <script src="js/jquery.js" ></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js" ></script>
+    <script src="js/videoListener.js" ></script>
   </body>
 </html>

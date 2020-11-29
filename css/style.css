@@ -16,3 +16,8 @@ img {
     max-width: 100%;
     max-height: 100%;
 }
+
+/* Hide video and show when it's activated by it's gif */
+.video-container {
+    display: none;
+}
