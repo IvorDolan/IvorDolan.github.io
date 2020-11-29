@@ -1,7 +1,18 @@
+@font-face {
+    font-family: 'oswald';
+    src: url('font/SyneMono-Regular.ttf');
+}
+
 body {
     background-color: black!important;
     height:100%;
     width:100%;
+    /* https://fonts.google.com/specimen/Syne+Mono */
+    font-family: 'Syne Mono', monospace!important;
+}
+
+.modal-content {
+    font-size: 1.3em;
 }
 
 .centered {
@@ -20,4 +31,38 @@ img {
 /* Hide video and show when it's activated by it's gif */
 .video-container {
     display: none;
+}
+
+/* Fancy check box style from
+ * https://stackoverflow.com/questions/34388696/how-to-change-the-background-color-on-a-input-checkbox-with-css
+ */
+input[type="checkbox"] {
+    visibility: hidden;
+}
+label {
+    cursor: pointer;
+}
+input[type="checkbox"] + label:before {
+    border: 1px solid #333;
+    content: "\00a0";
+    display: inline-block;
+    font: 16px/1em sans-serif;
+    height: 16px;
+    margin: 0.5em .5em .5em 0;
+    padding: 0;
+    vertical-align: middle;
+    width: 16px;
+}
+input[type="checkbox"]:checked + label:before {
+    background: #fff;
+    color: #333;
+    content: "\2713";
+    text-align: center;
+}
+input[type="checkbox"]:checked + label:after {
+    font-weight: bold;
+}
+
+input[type="checkbox"]:focus + label::before {
+    outline: rgb(59, 153, 252) auto 5px;
 }
