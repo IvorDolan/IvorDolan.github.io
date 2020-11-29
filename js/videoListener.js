@@ -4,6 +4,7 @@
 let activeGifNum;
 // True if ending first video, false if ending second video
 let isFirstVideo = true;
+let isSubmittedQuiz = false;
 
 // --- The quiz questions -------
 const quizQuestions = [
@@ -73,7 +74,7 @@ const quizQuestions = [
 ];
 
 // --- Go back to main screen --
-const goToFirstScreen = function(item) {
+const goToMainScreen = function(item) {
     console.log('returning to first screen', item);
     // tiny fade in fade out (in ms)
     $('.video-container').fadeOut(100);
@@ -93,21 +94,17 @@ const addQuizQuestions = function(videoIdNum) {
 // ---- Start Gif click to video ----------
 const video = document.querySelector('#video');
 video.addEventListener('ended', (event) => {
+    doVideoEnded();
+});
 
+// Handle if quiz not submitted, background clicked
+// Go back to home
+$("#theQuiz").on("hide.bs.modal", function () {
     // Pause before show quiz or returning to main page
     setTimeout(() => {
             // if on first video, load the quiz
-            if (isFirstVideo) {
-                // toggle off first screen boolean
-                isFirstVideo = !isFirstVideo;
-                // Add the quiz text
-                addQuizQuestions(activeGifNum);
-                $('#theQuiz').modal('show');
-            } else {
-                // toggle back on first screen boolean
-                isFirstVideo = !isFirstVideo;
-                // got back to home page
-                goToFirstScreen();
+            if (!isSubmittedQuiz) {
+                doVideoEnded();
             }
         },
         300);
@@ -120,6 +117,8 @@ $(".gif-listener").on('click touchstart', e => {
     console.log("Clicked on gif listener #", activeGifNum);
     $('.first-screen').hide();
     $('.video-container').show();
+    // reset quiz toggle
+    isSubmittedQuiz = false;
     // swap video source
     // Always loading the "a" video on GIF click
     const videoPath = `video/video-${activeGifNum}-a.mp4`;
@@ -135,6 +134,7 @@ $(".gif-listener").on('click touchstart', e => {
 // --- handler for submit on the quiz modal popup
 const modalForm = document.querySelector('form');
 modalForm.addEventListener('submit', event => {
+    isSubmittedQuiz = true;
     event.preventDefault();
     console.log('Form submission cancelled for ', event);
     // get the form elements
@@ -151,3 +151,25 @@ modalForm.addEventListener('submit', event => {
     video.load();
     video.play();
 });
+
+const doVideoEnded = function() {
+    // Pause before show quiz or returning to main page
+    setTimeout(() => {
+            // if on first video, load the quiz
+            if (isFirstVideo) {
+                // toggle off first screen boolean
+                isFirstVideo = !isFirstVideo;
+                // Add the quiz text
+                addQuizQuestions(activeGifNum);
+                $('#theQuiz').modal('show');
+            } else {
+                // toggle back on first screen boolean
+                isFirstVideo = !isFirstVideo;
+                // got back to home page
+                goToMainScreen();
+            }
+        },
+        300);
+}
+
+
