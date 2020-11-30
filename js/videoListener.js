@@ -6,6 +6,79 @@ let activeGifNum;
 let isFirstVideo = true;
 let isSubmittedQuiz = false;
 
+
+// no op quiz
+const noop = function() {
+    console.log(`no consequence for quiz ${activeGifNum}`);
+    return true;
+}
+
+// quiz that links to other url
+const openOtherLink = function(url) {
+    window.open(url, "_self", );
+    return false;
+}
+
+// --- Questions with consequences ---
+const quizConsequences = [
+    // quiz 1
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+    // quiz 2
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+    // quiz 3
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+    // quiz 4
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+    // quiz 5
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+    // quiz 6
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+    // quiz 7
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+    // quiz 8
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+    // quiz 9
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+]
+
+
+
 // --- The quiz questions -------
 const quizQuestions = [
     // quiz #1
@@ -85,10 +158,11 @@ const goToMainScreen = function(item) {
 // This swaps out the quiz questions
 const addQuizQuestions = function(videoIdNum) {
     console.log("Adding questions for video #", videoIdNum);
-    $(".modal-title").text(quizQuestions[videoIdNum][0]);
-    $("#box1-label").text(quizQuestions[videoIdNum][1]);
-    $("#box2-label").text(quizQuestions[videoIdNum][2]);
-    $("#box3-label").text(quizQuestions[videoIdNum][3]);
+    const index = videoIdNum - 1;
+    $(".modal-title").text(quizQuestions[index][0]);
+    $("#box1-label").text(quizQuestions[index][1]);
+    $("#box2-label").text(quizQuestions[index][2]);
+    $("#box3-label").text(quizQuestions[index][3]);
 }
 
 // ---- Start Gif click to video ----------
@@ -131,6 +205,7 @@ $(".gif-listener").on('click touchstart', e => {
 // ------ end gif click to video
 
 
+// ---- FORM SUBMIT HANDLER -----------------------
 // --- handler for submit on the quiz modal popup
 const modalForm = document.querySelector('form');
 modalForm.addEventListener('submit', event => {
@@ -143,6 +218,9 @@ modalForm.addEventListener('submit', event => {
     console.log("box1", input.box1.checked, "box2", input.box2.checked, "box3",  input.box3.checked);
     $('#theQuiz').modal('hide');
 
+    //TODO execute the consequence
+    let consequence = quizConsequences[activeGifNum - 1];
+
     // swap video source
     // Always loading the "a" video on GIF click
     const videoPath = `video/video-${activeGifNum}-b.mp4`;
@@ -150,6 +228,7 @@ modalForm.addEventListener('submit', event => {
     $('#video-source').attr("src", videoPath);
     video.load();
     video.play();
+
 });
 
 const doVideoEnded = function() {

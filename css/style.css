@@ -36,13 +36,13 @@ img {
 /* Fancy check box style from
  * https://stackoverflow.com/questions/34388696/how-to-change-the-background-color-on-a-input-checkbox-with-css
  */
-input[type="checkbox"] {
+input[type="radio"] {
     visibility: hidden;
 }
 label {
     cursor: pointer;
 }
-input[type="checkbox"] + label:before {
+input[type="radio"] + label:before {
     border: 1px solid #333;
     content: "\00a0";
     display: inline-block;
@@ -53,16 +53,16 @@ input[type="checkbox"] + label:before {
     vertical-align: middle;
     width: 16px;
 }
-input[type="checkbox"]:checked + label:before {
+input[type="radio"]:checked + label:before {
     background: #fff;
     color: #333;
     content: "\2713";
     text-align: center;
 }
-input[type="checkbox"]:checked + label:after {
+input[type="radio"]:checked + label:after {
     font-weight: bold;
 }
 
-input[type="checkbox"]:focus + label::before {
+input[type="radio"]:focus + label::before {
     outline: rgb(59, 153, 252) auto 5px;
 }
