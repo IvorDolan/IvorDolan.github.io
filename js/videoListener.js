@@ -17,17 +17,17 @@ const quizQuestions = [
     ],
     // quiz #2
     [
-        'What color is the sky?',
-        'Always blue',
-        'Sometimes blue',
-        'Often red'
+        'What are they looking at?',
+        'The blue water',
+        'the white clouds',
+        'nothing'
     ],
     // quiz #3
     [
-        'What color is the sky?',
-        'Always blue',
-        'Sometimes blue',
-        'Often red'
+        'What is there in the forest?',
+        'Some trees',
+        'Dead leaves',
+        'Something hidden'
     ],
     // quiz #4
     [
@@ -59,10 +59,10 @@ const quizQuestions = [
     ],
     // quiz #8
     [
-        'What color is the sky?',
-        'Always blue',
-        'Sometimes blue',
-        'Often red'
+        'Where are you looking?',
+        'At the car',
+        'At the lights',
+        'At who?'
     ],
     // quiz #9
     [
@@ -171,5 +171,3 @@ const doVideoEnded = function() {
         },
         300);
 }
-
-
