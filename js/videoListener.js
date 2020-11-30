@@ -6,6 +6,79 @@ let activeGifNum;
 let isFirstVideo = true;
 let isSubmittedQuiz = false;
 
+
+// no op quiz
+const noop = function() {
+    console.log(`no consequence for quiz ${activeGifNum}`);
+    return true;
+}
+
+// quiz that links to other url
+const openOtherLink = function(url) {
+    window.open(url, "_self", );
+    return false;
+}
+
+// --- Questions with consequences ---
+const quizConsequences = [
+    // quiz 1
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+    // quiz 2
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+    // quiz 3
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+    // quiz 4
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+    // quiz 5
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+    // quiz 6
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+    // quiz 7
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+    // quiz 8
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+    // quiz 9
+    {
+        box1: [openOtherLink, "https://www.w3schools.com"],
+        box2: [noop, null],
+        box3: [noop, null],
+    },
+]
+
+
+
 // --- The quiz questions -------
 const quizQuestions = [
     // quiz #1
@@ -131,6 +204,7 @@ $(".gif-listener").on('click touchstart', e => {
 // ------ end gif click to video
 
 
+// ---- FORM SUBMIT HANDLER -----------------------
 // --- handler for submit on the quiz modal popup
 const modalForm = document.querySelector('form');
 modalForm.addEventListener('submit', event => {
@@ -143,13 +217,17 @@ modalForm.addEventListener('submit', event => {
     console.log("box1", input.box1.checked, "box2", input.box2.checked, "box3",  input.box3.checked);
     $('#theQuiz').modal('hide');
 
-    // swap video source
-    // Always loading the "a" video on GIF click
-    const videoPath = `video/video-${activeGifNum}-b.mp4`;
-    // Example: video/video-8-a.mov
-    $('#video-source').attr("src", videoPath);
-    video.load();
-    video.play();
+    let consequence = quizConsequences[activeGifNum];
+
+    if (quizConsequences[activeGifNum].func()) {
+        // swap video source
+        // Always loading the "a" video on GIF click
+        const videoPath = `video/video-${activeGifNum}-b.mp4`;
+        // Example: video/video-8-a.mov
+        $('#video-source').attr("src", videoPath);
+        video.load();
+        video.play();
+    }
 });
 
 const doVideoEnded = function() {
