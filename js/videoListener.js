@@ -10,68 +10,70 @@ let isSubmittedQuiz = false;
 // no op quiz
 const noop = function() {
     console.log(`no consequence for quiz ${activeGifNum}`);
-    return true;
+    // return false for no consequence
+    return false;
 }
 
 // quiz that links to other url
 const openOtherLink = function(url) {
     window.open(url, "_self", );
-    return false;
+    // return true for consequence
+    return true;
 }
 
 // --- Questions with consequences ---
 const quizConsequences = [
     // quiz 1
     {
-        box1: [openOtherLink, "https://www.w3schools.com"],
+        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
         box2: [noop, null],
         box3: [noop, null],
     },
     // quiz 2
     {
-        box1: [openOtherLink, "https://www.w3schools.com"],
+        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
         box2: [noop, null],
         box3: [noop, null],
     },
     // quiz 3
     {
-        box1: [openOtherLink, "https://www.w3schools.com"],
+        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
         box2: [noop, null],
         box3: [noop, null],
     },
     // quiz 4
     {
-        box1: [openOtherLink, "https://www.w3schools.com"],
+        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
         box2: [noop, null],
         box3: [noop, null],
     },
     // quiz 5
     {
-        box1: [openOtherLink, "https://www.w3schools.com"],
+        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
         box2: [noop, null],
         box3: [noop, null],
     },
     // quiz 6
     {
-        box1: [openOtherLink, "https://www.w3schools.com"],
+        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
         box2: [noop, null],
         box3: [noop, null],
     },
     // quiz 7
     {
-        box1: [openOtherLink, "https://www.w3schools.com"],
+        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
         box2: [noop, null],
         box3: [noop, null],
     },
     // quiz 8
     {
-        box1: [openOtherLink, "https://www.w3schools.com"],
+        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
         box2: [noop, null],
         box3: [noop, null],
     },
     // quiz 9
     {
-        box1: [openOtherLink, "https://www.w3schools.com"],
+        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
         box2: [noop, null],
         box3: [noop, null],
     },
@@ -154,6 +156,14 @@ const goToMainScreen = function(item) {
     $('.first-screen').fadeIn(100);
 }
 
+// Test if consequence
+const doConsequence = function(index, box) {
+    let consequence = quizConsequences[index];
+    // Assumes first is function and second is param
+    if (consequence[box] && consequence[box].length == 2) {
+        consequence[box][0](consequence[box][1]);
+    }
+}
 
 // This swaps out the quiz questions
 const addQuizQuestions = function(videoIdNum) {
@@ -219,7 +229,18 @@ modalForm.addEventListener('submit', event => {
     $('#theQuiz').modal('hide');
 
     //TODO execute the consequence
-    let consequence = quizConsequences[activeGifNum - 1];
+    //input.box1.checked
+    //true
+    //input.box2.checked
+    //false
+    //input.box3.checked
+    //false
+    const boxes = ["box1", "box1", "box3"]
+    boxes.forEach(box => {
+        if (input[box].checked) {
+            doConsequence(activeGifNum - 1, box);
+        }
+    })
 
     // swap video source
     // Always loading the "a" video on GIF click
