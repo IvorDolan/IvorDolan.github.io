@@ -120,10 +120,10 @@ const quizQuestions = [
     ],
     // quiz #6
     [
-        'What color is the sky?',
-        'Always blue',
-        'Sometimes blue',
-        'Often red'
+        'What should you text them?',
+        'Hi',
+        'Hey',
+        'Good morning'
     ],
     // quiz #7
     [
