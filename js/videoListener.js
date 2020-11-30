@@ -158,10 +158,11 @@ const goToMainScreen = function(item) {
 // This swaps out the quiz questions
 const addQuizQuestions = function(videoIdNum) {
     console.log("Adding questions for video #", videoIdNum);
-    $(".modal-title").text(quizQuestions[videoIdNum][0]);
-    $("#box1-label").text(quizQuestions[videoIdNum][1]);
-    $("#box2-label").text(quizQuestions[videoIdNum][2]);
-    $("#box3-label").text(quizQuestions[videoIdNum][3]);
+    const index = videoIdNum - 1;
+    $(".modal-title").text(quizQuestions[index][0]);
+    $("#box1-label").text(quizQuestions[index][1]);
+    $("#box2-label").text(quizQuestions[index][2]);
+    $("#box3-label").text(quizQuestions[index][3]);
 }
 
 // ---- Start Gif click to video ----------
@@ -217,17 +218,17 @@ modalForm.addEventListener('submit', event => {
     console.log("box1", input.box1.checked, "box2", input.box2.checked, "box3",  input.box3.checked);
     $('#theQuiz').modal('hide');
 
-    let consequence = quizConsequences[activeGifNum];
+    //TODO execute the consequence
+    let consequence = quizConsequences[activeGifNum - 1];
 
-    if (quizConsequences[activeGifNum].func()) {
-        // swap video source
-        // Always loading the "a" video on GIF click
-        const videoPath = `video/video-${activeGifNum}-b.mp4`;
-        // Example: video/video-8-a.mov
-        $('#video-source').attr("src", videoPath);
-        video.load();
-        video.play();
-    }
+    // swap video source
+    // Always loading the "a" video on GIF click
+    const videoPath = `video/video-${activeGifNum}-b.mp4`;
+    // Example: video/video-8-a.mov
+    $('#video-source').attr("src", videoPath);
+    video.load();
+    video.play();
+
 });
 
 const doVideoEnded = function() {
