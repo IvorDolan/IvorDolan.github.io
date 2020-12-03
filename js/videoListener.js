@@ -21,6 +21,16 @@ const openOtherLink = function(url) {
     return true;
 }
 
+// quiz that links to other url
+const closeWindow = function(url) {
+    window.close();
+    // return true for consequence
+    return true;
+}
+
+// A list of activeGifNums to close on click instead of loading video
+const closeOnGifClickList = ["5"];
+
 // --- Questions with consequences ---
 const quizConsequences = [
     // quiz 1
@@ -49,7 +59,7 @@ const quizConsequences = [
     },
     // quiz 5
     {
-        box1: [noop, null],
+        box1: [closeWindow, null],
         box2: [noop, null],
         box3: [noop, null],
     },
@@ -195,6 +205,10 @@ $("#theQuiz").on("hide.bs.modal", function () {
 });
 
 $(".gif-listener").on('click touchstart', e => {
+    // Ensure checkboxes are reset
+    $("#box1").prop("checked", false);
+    $("#box2").prop("checked", false);
+    $("#box3").prop("checked", false);
     // parse the gif number
     // example "gif-8" split on "-" is "gif" and "8";
     activeGifNum = e.currentTarget.id.split('-')[1];
@@ -203,13 +217,19 @@ $(".gif-listener").on('click touchstart', e => {
     $('.video-container').show();
     // reset quiz toggle
     isSubmittedQuiz = false;
-    // swap video source
-    // Always loading the "a" video on GIF click
-    const videoPath = `video/video-${activeGifNum}-a.mp4`;
-    // Example: video/video-8-a.mov
-    $('#video-source').attr("src", videoPath);
-    video.load();
-    video.play();
+    // reset Quiz boxes
+    // check if this is close window on click gif
+    if (closeOnGifClickList.includes(activeGifNum)) {
+        closeWindow();
+    } else {
+        // swap video source
+        // Always loading the "a" video on GIF click
+        const videoPath = `video/video-${activeGifNum}-a.mp4`;
+        // Example: video/video-8-a.mov
+        $('#video-source').attr("src", videoPath);
+        video.load();
+        video.play();
+    }
     return false;
 });
 // ------ end gif click to video
@@ -228,7 +248,7 @@ modalForm.addEventListener('submit', event => {
     console.log("box1", input.box1.checked, "box2", input.box2.checked, "box3",  input.box3.checked);
     $('#theQuiz').modal('hide');
 
-    //TODO execute the consequence
+    //Execute the consequence
     //input.box1.checked
     //true
     //input.box2.checked
@@ -253,21 +273,23 @@ modalForm.addEventListener('submit', event => {
 });
 
 const doVideoEnded = function() {
-    // Pause before show quiz or returning to main page
-    setTimeout(() => {
-            // if on first video, load the quiz
-            if (isFirstVideo) {
-                // toggle off first screen boolean
-                isFirstVideo = !isFirstVideo;
-                // Add the quiz text
-                addQuizQuestions(activeGifNum);
-                $('#theQuiz').modal('show');
-            } else {
-                // toggle back on first screen boolean
-                isFirstVideo = !isFirstVideo;
-                // got back to home page
-                goToMainScreen();
-            }
-        },
-        300);
+    if (!!activeGifNum) {
+        // Pause before show quiz or returning to main page
+        setTimeout(() => {
+                // if on first video, load the quiz
+                if (isFirstVideo) {
+                    // toggle off first screen boolean
+                    isFirstVideo = !isFirstVideo;
+                    // Add the quiz text
+                    addQuizQuestions(activeGifNum);
+                    $('#theQuiz').modal('show');
+                } else {
+                    // toggle back on first screen boolean
+                    isFirstVideo = !isFirstVideo;
+                    // got back to home page
+                    goToMainScreen();
+                }
+            },
+            300);
+    }
 }
