@@ -29,7 +29,7 @@ const closeWindow = function(url) {
 }
 
 // A list of activeGifNums to close on click instead of loading video
-const closeOnGifClickList = ["5"];
+const closeOnGifClickList = [];
 
 // --- Questions with consequences ---
 const quizConsequences = [
@@ -60,8 +60,8 @@ const quizConsequences = [
     // quiz 5
     {
         box1: [closeWindow, null],
-        box2: [noop, null],
-        box3: [noop, null],
+        box2: [closeWindow, null],
+        box3: [closeWindow, null],
     },
     // quiz 6
     {
