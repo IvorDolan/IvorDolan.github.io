@@ -25,55 +25,55 @@ const openOtherLink = function(url) {
 const quizConsequences = [
     // quiz 1
     {
-        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
-        box2: [noop, null],
-        box3: [noop, null],
+        box1: [openOtherLink, "https://www.ugg.com"],
+        box2: [openOtherLink, "https://www.drmartens.com/us/en/"],
+        box3: [openOtherLink, "https://www.timberland.com"],
     },
     // quiz 2
     {
-        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
+        box1: [noop, null],
         box2: [noop, null],
         box3: [noop, null],
     },
     // quiz 3
     {
-        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
+        box1: [noop, null],
         box2: [noop, null],
         box3: [noop, null],
     },
     // quiz 4
     {
-        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
+        box1: [noop, null],
         box2: [noop, null],
         box3: [noop, null],
     },
     // quiz 5
     {
-        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
+        box1: [noop, null],
         box2: [noop, null],
         box3: [noop, null],
     },
     // quiz 6
     {
-        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
+        box1: [noop, null],
         box2: [noop, null],
         box3: [noop, null],
     },
     // quiz 7
     {
-        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
+        box1: [noop, null],
         box2: [noop, null],
         box3: [noop, null],
     },
     // quiz 8
     {
-        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
+        box1: [noop, null],
         box2: [noop, null],
         box3: [noop, null],
     },
     // quiz 9
     {
-        box1: [openOtherLink, "https://en.wikipedia.org/wiki/Glitch"],
+        box1: [noop, null],
         box2: [noop, null],
         box3: [noop, null],
     },
@@ -85,10 +85,10 @@ const quizConsequences = [
 const quizQuestions = [
     // quiz #1
     [
-        'What color is the sky?',
-        'Always blue',
-        'Sometimes blue',
-        'Often red'
+        'Which boots to buy?',
+        'Timberland',
+        'Doc Martin',
+        'Ugg'
     ],
     // quiz #2
     [
