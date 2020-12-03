@@ -23,7 +23,7 @@ const openOtherLink = function(url) {
 
 // quiz that links to other url
 const closeWindow = function(url) {
-    window.close();
+    open(window.location, '_self').close();
     // return true for consequence
     return true;
 }
@@ -240,21 +240,12 @@ $(".gif-listener").on('click touchstart', e => {
 const modalForm = document.querySelector('form');
 modalForm.addEventListener('submit', event => {
     isSubmittedQuiz = true;
-    event.preventDefault();
-    console.log('Form submission cancelled for ', event);
     // get the form elements
     const input = event.target.elements;
     // this assumes the input boxes are named box1, box2,  box3
     console.log("box1", input.box1.checked, "box2", input.box2.checked, "box3",  input.box3.checked);
     $('#theQuiz').modal('hide');
-
     //Execute the consequence
-    //input.box1.checked
-    //true
-    //input.box2.checked
-    //false
-    //input.box3.checked
-    //false
     const boxes = ["box1", "box1", "box3"]
     boxes.forEach(box => {
         if (input[box].checked) {
@@ -269,6 +260,9 @@ modalForm.addEventListener('submit', event => {
     $('#video-source').attr("src", videoPath);
     video.load();
     video.play();
+
+    event.preventDefault();
+    console.log('Form submission cancelled for ', event);
 
 });
 
