@@ -113,10 +113,10 @@ const quizQuestions = [
     ],
     // quiz #5
     [
-        'What color is the sky?',
-        'Always blue',
-        'Sometimes blue',
-        'Often red'
+        ' ',
+        ' ',
+        ' ',
+        ' '
     ],
     // quiz #6
     [
@@ -127,10 +127,10 @@ const quizQuestions = [
     ],
     // quiz #7
     [
-        'What color is the sky?',
-        'Always blue',
-        'Sometimes blue',
-        'Often red'
+        'Who is there',
+        'Julia',
+        'Robert',
+        'Alex'
     ],
     // quiz #8
     [
@@ -141,10 +141,10 @@ const quizQuestions = [
     ],
     // quiz #9
     [
-        'What color is the sky?',
-        'Always blue',
-        'Sometimes blue',
-        'Often red'
+        'Why is she excited?',
+        'A new car',
+        'A big tree',
+        'Some frogs'
     ]
 ];
 
