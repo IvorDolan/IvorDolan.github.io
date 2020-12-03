@@ -23,7 +23,8 @@ const openOtherLink = function(url) {
 
 // quiz that links to other url
 const closeWindow = function(url) {
-    open(window.location, '_self').close();
+    // This won't close the window.
+    window.close();
     // return true for consequence
     return true;
 }
