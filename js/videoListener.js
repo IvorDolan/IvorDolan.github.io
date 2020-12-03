@@ -124,9 +124,9 @@ const quizQuestions = [
     // quiz #5
     [
         ' ',
-        ' ',
-        ' ',
-        ' '
+        'Yes',
+        'No',
+        'Maybe'
     ],
     // quiz #6
     [
